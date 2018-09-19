@@ -23,28 +23,24 @@ namespace SahilNameSorter
             {
                 people.Add(new Person(line));
             }
-            
-                var sortedNames = peopleService.Sort(people);
-          
-                var sortedNamesDec = peopleService.SortbyDecending(people);
-
+            var sortedNames = new List<Person>();
             if (s1 == "A")
             {
-                System.IO.File.WriteAllLines(@"sorted-names-list.txt", PersonService.GetFullNames(sortedNames));
-                Console.WriteLine("Sorted names are written to file. Press any key to exit");
-                Console.ReadKey();
+                 sortedNames = peopleService.Sort(people);
+               
             }
             else if (s1 == "D")
             {
-                System.IO.File.WriteAllLines(@"sorted-names-list.txt", PersonService.GetFullNames(sortedNamesDec));
-                Console.WriteLine("Sorted names are written to file. Press any key to exit");
-                Console.ReadKey();
+                 sortedNames = peopleService.SortbyDecending(people);
             }
             else
             {
                 Console.WriteLine("Invalid Selection");
                 Console.ReadKey();
             }
+            System.IO.File.WriteAllLines(@"sorted-names-list.txt", PersonService.GetFullNames(sortedNames));
+            Console.WriteLine("Sorted names are written to file. Press any key to exit");
+            Console.ReadKey();
         }
     }
 }

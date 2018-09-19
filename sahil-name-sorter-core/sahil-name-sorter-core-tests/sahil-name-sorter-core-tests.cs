@@ -7,7 +7,7 @@ namespace SahilNameSorter.Tests
     public class PersonTests
     {
         [Fact]
-        public void ShouldHaveSurname()
+        public void AcceptsLastLetterAsSurname()
         {
             //Arange & act
             var s = new Person("Sahil Deshpande");
@@ -17,7 +17,7 @@ namespace SahilNameSorter.Tests
 
         }
         [Fact]
-        public void Nullcheck()
+        public void SurnameNullcheck()
         {
             var s = new Person("Buth Arthur Post Archer");
 

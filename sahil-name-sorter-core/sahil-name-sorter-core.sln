@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sahil-name-sorter-core", "sahil-name-sorter-core\sahil-name-sorter-core.csproj", "{6B845065-09A1-44F1-837F-86C843F24829}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sahil-name-sorter-core", "sahil-name-sorter-core\sahil-name-sorter-core.csproj", "{6B845065-09A1-44F1-837F-86C843F24829}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sahil-name-sorter-core-tests", "sahil-name-sorter-core-tests\sahil-name-sorter-core-tests.csproj", "{8E79D1A0-9536-46B1-A82B-976C1DCA78BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{6B845065-09A1-44F1-837F-86C843F24829}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B845065-09A1-44F1-837F-86C843F24829}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B845065-09A1-44F1-837F-86C843F24829}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E79D1A0-9536-46B1-A82B-976C1DCA78BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E79D1A0-9536-46B1-A82B-976C1DCA78BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E79D1A0-9536-46B1-A82B-976C1DCA78BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E79D1A0-9536-46B1-A82B-976C1DCA78BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

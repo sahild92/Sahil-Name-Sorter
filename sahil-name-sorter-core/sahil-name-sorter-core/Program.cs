@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using SahilNameSorter.Domain;
 using SahilNameSorter.Services;
 namespace SahilNameSorter
@@ -11,7 +12,7 @@ namespace SahilNameSorter
         {
             Console.WriteLine("Press a key to Sort Last Name");
             // Create the IEnumerable data source  
-            var lines = System.IO.File.ReadAllLines(@"unsorted-names-list.txt").ToList();
+            var lines = System.IO.File.ReadAllLines(@"unsorted-names-list.txt",Encoding.UTF8).ToList();
             Console.ReadKey();
             Console.WriteLine("Press A for names in Ascending OR Press D for names in Decending");
             string s1 = Console.ReadLine();
@@ -28,7 +29,6 @@ namespace SahilNameSorter
             {
                 INameSorter namesorter = new NameSorterAscending();
                 sortedNames = namesorter.Sort(people);
-               
             }
             else if (s1 == "D")
             {

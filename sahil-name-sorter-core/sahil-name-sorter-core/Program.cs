@@ -26,12 +26,14 @@ namespace SahilNameSorter
             var sortedNames = new List<Person>();
             if (s1 == "A")
             {
-                 sortedNames = peopleService.Sort(people);
+                INameSorter namesorter = new NameSorterAscending();
+                sortedNames = namesorter.Sort(people);
                
             }
             else if (s1 == "D")
             {
-                 sortedNames = peopleService.SortbyDecending(people);
+                INameSorter namesorter = new NameSorterDecending();
+                sortedNames = namesorter.Sort(people);
             }
             else
             {

@@ -7,7 +7,7 @@ namespace SahilNameSorter.Services
 {
     class PersonService
     {
-      public List<Person> Sort(List<Person> people)
+     /* public List<Person> Sort(List<Person> people)
         {
             var sortedPeople = people.OrderBy(x => x.Surname).ToList();
             return sortedPeople;
@@ -16,7 +16,7 @@ namespace SahilNameSorter.Services
         {
             var sortedPeopledec = people.OrderByDescending(x => x.Surname).ToList();
             return sortedPeopledec;
-        } 
+        } */
         public static List<string> GetFullNames(List<Person> people)
         {
             var sortedlines = new List<string>();

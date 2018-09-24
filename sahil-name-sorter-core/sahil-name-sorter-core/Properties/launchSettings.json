@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "sahil-name-sorter-core": {
+      "commandName": "Project",
+      "commandLineArgs": "--input \"test\""
+    }
+  }
+}

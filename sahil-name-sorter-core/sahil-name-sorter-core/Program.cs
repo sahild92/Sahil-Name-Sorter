@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using SahilNameSorter.Domain;
@@ -11,8 +12,9 @@ namespace SahilNameSorter
         static void Main(string[] args)
         {
             Console.WriteLine("Press a key to Sort the Names");
-            // Create the IEnumerable data source  
-            var lines = System.IO.File.ReadAllLines(@"Data\unsorted-names-list.txt", Encoding.UTF7).ToList();
+            // Create the IEnumerable data source
+            var lines = File.ReadAllLines(@"Data\unsorted-names-list.txt", Encoding.UTF7).Concat(File.ReadAllLines(@"Data\names.txt",Encoding.UTF7)).ToList();
+
             Console.ReadKey();
             //Print the query output on console
             // Execute the query and write out the new file.
@@ -66,7 +68,7 @@ namespace SahilNameSorter
                     Console.ReadKey();
                 }
             }
-                System.IO.File.WriteAllLines(@"sorted-names-list.txt", PersonService.GetFullNames(sortedNames));
+                File.WriteAllLines(@"sorted-names-list.txt", PersonService.GetFullNames(sortedNames));
                 Console.WriteLine("Sorted names are written to file. Press any key to exit");
                 Console.ReadKey();
             

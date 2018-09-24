@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="unsorted-names-list.txt">
+    <None Update="Data\names.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\sorted-names-list.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\unsorted-names-list.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

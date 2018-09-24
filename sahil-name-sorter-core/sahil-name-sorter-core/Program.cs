@@ -10,39 +10,66 @@ namespace SahilNameSorter
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Press a key to Sort Last Name");
+            Console.WriteLine("Press a key to Sort the Names");
             // Create the IEnumerable data source  
-            var lines = System.IO.File.ReadAllLines(@"unsorted-names-list.txt",Encoding.UTF8).ToList();
+            var lines = System.IO.File.ReadAllLines(@"Data\unsorted-names-list.txt", Encoding.UTF7).ToList();
             Console.ReadKey();
-            Console.WriteLine("Press A for names in Ascending OR Press D for names in Decending");
-            string s1 = Console.ReadLine();
             //Print the query output on console
             // Execute the query and write out the new file.
             var peopleService = new PersonService();
             var people = new List<Person>();
-            foreach(var line in lines)
+            foreach (var line in lines)
             {
                 people.Add(new Person(line));
             }
             var sortedNames = new List<Person>();
-            if (s1 == "A")
+            Console.WriteLine("Press F for First names OR Press L for Last names Sort");
+            string f1 = Console.ReadLine();
+            if (f1 == "F")
             {
-                INameSorter namesorter = new NameSorterAscending();
-                sortedNames = namesorter.Sort(people);
-            }
-            else if (s1 == "D")
-            {
-                INameSorter namesorter = new NameSorterDecending();
-                sortedNames = namesorter.Sort(people);
+                Console.WriteLine("Press A for First names in Ascending OR Press D for First names in Decending");
+                string d1 = Console.ReadLine();
+
+                if (d1 == "A")
+                {
+                    INameSorter namesorter = new FirstnameAscending();
+                    sortedNames = namesorter.Sort(people);
+                }
+                else if (d1 == "D")
+                {
+                    INameSorter namesorter = new FirstnameDecending();
+                    sortedNames = namesorter.Sort(people);
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Selection");
+                    Console.ReadKey();
+                }
             }
             else
             {
-                Console.WriteLine("Invalid Selection");
-                Console.ReadKey();
+                Console.WriteLine("Press A for Last names in Ascending OR Press D for Last names in Decending");
+                string s1 = Console.ReadLine();
+                if (s1 == "A")
+                {
+                    INameSorter namesorter = new NameSorterAscending();
+                    sortedNames = namesorter.Sort(people);
+                }
+                else if (s1 == "D")
+                {
+                    INameSorter namesorter = new NameSorterDecending();
+                    sortedNames = namesorter.Sort(people);
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Selection");
+                    Console.ReadKey();
+                }
             }
-            System.IO.File.WriteAllLines(@"sorted-names-list.txt", PersonService.GetFullNames(sortedNames));
-            Console.WriteLine("Sorted names are written to file. Press any key to exit");
-            Console.ReadKey();
+                System.IO.File.WriteAllLines(@"sorted-names-list.txt", PersonService.GetFullNames(sortedNames));
+                Console.WriteLine("Sorted names are written to file. Press any key to exit");
+                Console.ReadKey();
+            
         }
     }
 }

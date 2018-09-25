@@ -12,27 +12,44 @@ namespace SahilNameSorter
     {
 
         static void Main(string[] args)
-        
         {
             var app = new CommandLineApplication();
-            var basicOption = app.Option("-i|--input <optionvalue>",
-                   "File Path",
+
+            var basicOption = app.Option("-fp|--filepath",
+                   "provides the name file for input",
                    CommandOptionType.SingleValue);
-            app.HelpOption("-?|-h|--help");
+
+            var firstnameOption = app.Option("-f|--firstname",
+                   "input data is firstname first",
+                   CommandOptionType.NoValue);
+
+            var lastnameOption = app.Option("-l|--lastname",
+               "Input data is lastname first",
+               CommandOptionType.NoValue);
+
+            var NameAscendingOption = app.Option("-a|--NameAscending",
+                   "input data is firstname ascending first",
+                   CommandOptionType.NoValue);
+
+            var NameDecendingOption = app.Option("-d|--NameDecending",
+                   "input data is firstname decending first",
+                   CommandOptionType.NoValue);
+
+
+            app.HelpOption("-? | -h | --help");
 
             app.OnExecute(() =>
             {
                 Console.WriteLine("simple-command is executing");
 
-                Run(basicOption);
+                Run(basicOption, firstnameOption.HasValue(), lastnameOption.HasValue(), NameAscendingOption.HasValue(), NameDecendingOption.HasValue());
 
                 Console.WriteLine("simple-command has finished.");
                 return 0; //return 0 on a successful execution
             });
-          
-                Console.WriteLine("Press a key to Sort the Names");
-            
 
+            Console.WriteLine("Press a key to Sort the Names");
+      
             // Create the IEnumerable data source
             try
             {
@@ -51,12 +68,11 @@ namespace SahilNameSorter
             {
                 Console.WriteLine("Unable to execute application: {0}", ex.Message);
             }
-            
+
         }
-        private static void Run(CommandOption basicOption)
+        private static void Run(CommandOption basicOption, bool firstnameOption, bool lastnameOption, bool NameAscendingOption, bool NameDecendingOption)
         {
             var lines = File.ReadAllLines(basicOption.Value(), Encoding.UTF7).ToList();
-            Console.ReadKey();
             //Print the query output on console
             // Execute the query and write out the new file.
             var peopleService = new PersonService();
@@ -66,22 +82,38 @@ namespace SahilNameSorter
                 people.Add(new Person(line));
             }
             var sortedNames = new List<Person>();
-            Console.WriteLine("Press F for First names OR Press L for Last names Sort");
-            string f1 = Console.ReadLine();
 
-            if (f1 == "F")
+            if (firstnameOption)
             {
-                Console.WriteLine("Press A for First names in Ascending OR Press D for First names in Decending");
-                string d1 = Console.ReadLine();
-
-                if (d1 == "A")
+                
+                if (NameAscendingOption)
                 {
-                    INameSorter namesorter = new FirstnameAscending();
+                    INameSorter namesorter = new NameSorterAscending(x => x.FirstName);
                     sortedNames = namesorter.Sort(people);
                 }
-                else if (d1 == "D")
+                else if (NameDecendingOption)
                 {
-                    INameSorter namesorter = new FirstnameDecending();
+                    INameSorter namesorter = new NameSorterDecending(x => x.FirstName);
+                    sortedNames = namesorter.Sort(people);
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Selection");
+                    Console.ReadKey();
+                }            
+
+            }
+            else if(lastnameOption)
+            {
+                
+                if (NameAscendingOption)
+                {
+                    INameSorter namesorter = new NameSorterAscending(x => x.Surname);
+                    sortedNames = namesorter.Sort(people);
+                }
+                else if (NameDecendingOption)
+                {
+                    INameSorter namesorter = new NameSorterDecending(x => x.Surname);
                     sortedNames = namesorter.Sort(people);
                 }
                 else
@@ -89,27 +121,7 @@ namespace SahilNameSorter
                     Console.WriteLine("Invalid Selection");
                     Console.ReadKey();
                 }
-            }
-            else
-            {
-                Console.WriteLine("Press A for Last names in Ascending OR Press D for Last names in Decending");
-                string s1 = Console.ReadLine();
-                if (s1 == "A")
-                {
-                    INameSorter namesorter = new NameSorterAscending();
-                    sortedNames = namesorter.Sort(people);
-                }
-                else if (s1 == "D")
-                {
-                    INameSorter namesorter = new NameSorterDecending();
-                    sortedNames = namesorter.Sort(people);
-                }
-                else
-                {
-                    Console.WriteLine("Invalid Selection");
-                    Console.ReadKey();
-                }
-            }
+            } 
             File.WriteAllLines(@"sorted-names-list.txt", PersonService.GetFullNames(sortedNames));
             Console.WriteLine("Sorted names are written to file. Press any key to exit");
             Console.ReadKey();

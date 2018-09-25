@@ -6,6 +6,7 @@ using System.Text;
 using SahilNameSorter.Domain;
 using SahilNameSorter.Services;
 using Microsoft.Extensions.CommandLineUtils;
+using System.Reflection;
 namespace SahilNameSorter
 {
     class Program
@@ -14,6 +15,8 @@ namespace SahilNameSorter
         static void Main(string[] args)
         {
             var app = new CommandLineApplication();
+            app.Name = "sahil-name-sorter-core";
+
 
             var basicOption = app.Option("-fp|--filepath",
                    "provides the name file for input",
@@ -34,9 +37,12 @@ namespace SahilNameSorter
             var NameDecendingOption = app.Option("-d|--NameDecending",
                    "input data is firstname decending first",
                    CommandOptionType.NoValue);
+            app.HelpOption("-?|-h|--help");
 
-
-            app.HelpOption("-? | -h | --help");
+            //  app.Description = "To sort names first specify the filepath followed by the firstname/lastname and lastly Ascending/Decending ";
+            app.VersionOption("-v|--version", () => {
+                return string.Format("Version {0}", Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion);
+            });
 
             app.OnExecute(() =>
             {
@@ -49,7 +55,7 @@ namespace SahilNameSorter
             });
 
             Console.WriteLine("Press a key to Sort the Names");
-      
+
             // Create the IEnumerable data source
             try
             {
@@ -85,7 +91,7 @@ namespace SahilNameSorter
 
             if (firstnameOption)
             {
-                
+
                 if (NameAscendingOption)
                 {
                     INameSorter namesorter = new NameSorterAscending(x => x.FirstName);
@@ -100,12 +106,12 @@ namespace SahilNameSorter
                 {
                     Console.WriteLine("Invalid Selection");
                     Console.ReadKey();
-                }            
+                }
 
             }
-            else if(lastnameOption)
+            else if (lastnameOption)
             {
-                
+
                 if (NameAscendingOption)
                 {
                     INameSorter namesorter = new NameSorterAscending(x => x.Surname);
@@ -121,7 +127,7 @@ namespace SahilNameSorter
                     Console.WriteLine("Invalid Selection");
                     Console.ReadKey();
                 }
-            } 
+            }
             File.WriteAllLines(@"sorted-names-list.txt", PersonService.GetFullNames(sortedNames));
             Console.WriteLine("Sorted names are written to file. Press any key to exit");
             Console.ReadKey();

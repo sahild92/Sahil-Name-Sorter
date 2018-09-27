@@ -1,6 +1,7 @@
 ﻿using SahilNameSorter.Domain;
 using System;
 using Xunit;
+using SahilNameSorter;
 
 namespace SahilNameSorter.Tests
 {
@@ -23,5 +24,6 @@ namespace SahilNameSorter.Tests
 
             Assert.NotNull(s.Surname);
         }
+     
     }
 }

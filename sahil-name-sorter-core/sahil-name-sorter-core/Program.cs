@@ -44,42 +44,42 @@ namespace SahilNameSorter
             });
             ;
             app.OnExecute(() =>
-              {
+            {
                 Console.WriteLine("simple-command is executing");
                 if (firstnameOption.HasValue() && lastnameOption.HasValue())
-                   {
-                      throw new Exception("Cannot specify the first name and last name together");
-                   }
+                {
+                    throw new Exception("Cannot specify the first name and last name together");
+                }
 
                 if (NameAscendingOption.HasValue() && NameAscendingOption.HasValue())
-                   {
-                      throw new Exception("Cannot specify the ascending and decending together");
-                   }
-            Run(basicOption, firstnameOption.HasValue(), lastnameOption.HasValue(), NameAscendingOption.HasValue(), NameDecendingOption.HasValue());
+                {
+                    throw new Exception("Cannot specify the ascending and decending together");
+                }
+                Run(basicOption, firstnameOption.HasValue(), lastnameOption.HasValue(), NameAscendingOption.HasValue(), NameDecendingOption.HasValue());
 
                 Console.WriteLine("simple-command has finished.");
                 return 0; //return 0 on a successful execution
-                });
+            });
 
             // Create the IEnumerable data source
             try
-                {
-                    // This begins the actual execution of the application
-                    Console.WriteLine("ConsoleArgs app executing...");
-                    app.Execute(args);
-                }
-                catch (CommandParsingException ex)
-                {
-                    // You'll always want to catch this exception, otherwise it will generate a messy and confusing error for the end user.
-                    // the message will usually be something like:
-                    // "Unrecognized command or argument '<invalid-command>'"
-                    Console.WriteLine(ex.Message);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Unable to execute application: {0}", ex.Message);
-                }
+            {
+                // This begins the actual execution of the application
+                Console.WriteLine("ConsoleArgs app executing...");
+                app.Execute(args);
             }
+            catch (CommandParsingException ex)
+            {
+                // You'll always want to catch this exception, otherwise it will generate a messy and confusing error for the end user.
+                // the message will usually be something like:
+                // "Unrecognized command or argument '<invalid-command>'"
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Unable to execute application: {0}", ex.Message);
+            }
+        }
         private static void Run(CommandOption basicOption, bool firstnameOption, bool lastnameOption, bool NameAscendingOption, bool NameDecendingOption)
         {
             var lines = File.ReadAllLines(basicOption.Value(), Encoding.UTF7).ToList();
@@ -92,7 +92,7 @@ namespace SahilNameSorter
                 people.Add(new Person(line));
             }
             var sortedNames = new List<Person>();
-           
+
             if (firstnameOption)
             {
                 if (NameAscendingOption)

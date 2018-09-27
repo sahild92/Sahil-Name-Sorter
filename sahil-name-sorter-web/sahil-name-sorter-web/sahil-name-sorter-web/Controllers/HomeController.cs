@@ -19,7 +19,7 @@ namespace sahilNameSorterWeb.Controllers
 
         public IActionResult Index()
         {
-            var model = new HomeViewModel { WelcomeMessage = "Press a key to Sort Numbers" };
+            var model = new HomeViewModel { WelcomeMessage = "Welcome to Sort Application" };
 
             return View(model);
         }

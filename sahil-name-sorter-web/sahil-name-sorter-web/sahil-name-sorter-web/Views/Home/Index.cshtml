@@ -26,14 +26,17 @@
             <tr>
                 <p>Results</p>
             </tr>
-            @foreach (var line in @Model.output)
-            {
-                <p>
-                    @line
-               </p>
+         
+             
+                    @foreach (var line in @Model.output)
+                    {
+            <p>
+                @line
+            </p>
 
-        }
 
+                    }
+           
         </table>
 
     }

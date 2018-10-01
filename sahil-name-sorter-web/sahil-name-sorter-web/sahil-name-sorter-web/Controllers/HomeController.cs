@@ -21,7 +21,18 @@ namespace sahilNameSorterWeb.Controllers
 
         [HttpPost]
         public IActionResult Index(HomeViewModel model, IFormFile file)
-        {
+        { 
+            if (file == null)
+            {
+                ViewBag.ResultErrorMessage = "No file was chosen.";
+                return View(new HomeViewModel());
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+        
             var stream = file.OpenReadStream();
             var buffer = new byte[file.Length];
 

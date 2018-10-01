@@ -4,54 +4,97 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <h1> @Model.WelcomeMessage </h1>
-
-    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        @Html.HiddenFor(x => @Model.WelcomeMessage);
-    <table cellpadding="0" cellspacing="0">
-        <tr>
-            <p>Start Name Sorter on server</p>
-        </tr>
-        
-            <label for="file">Upload Input File:</label>
-
-            <input type="file" name="file" id="file" />
-        
-            <table>
-
-                @Html.RadioButtonFor(Model => Model.Sort, SortType.firstname)@Html.Label("First Name")
-                @Html.RadioButtonFor(Model => Model.Sort, SortType.lastname)@Html.Label("Last Name")
-            </table>
-            <table>
-                @Html.RadioButtonFor(Model => Model.Order, OrderType.ascending) @Html.Label("Ascending")
-                @Html.RadioButtonFor(Model => Model.Order, OrderType.descending) @Html.Label("Descending")
-            </table>
-       
-        <tr>
-            <td><input type="submit" value="Submit" /></td>
-        </tr>
-    </table>
-
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1> @Model.WelcomeMessage </h1>
+        </div>
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.HiddenFor(x => @Model.WelcomeMessage);
         <table cellpadding="0" cellspacing="0">
             <tr>
-                <p>Results</p>
+                <div class="form-group">
+                    <h2>Start Name Sorter on server</h2>
+                </div>
             </tr>
+            <div class="form-group">
+                <div class="form-group mx-sm-3 mb-2">
+                    <label for="file" placeholder="First name">Enter your name:</label>
+                    </div>
+                    @Html.TextBoxFor(m => m.inputString)
+
+                    @Html.ValidationMessageFor(m => m.inputString)
+
+                    @if (ViewBag.ResultErrorMessage != null)
+                    {
+
+                        <script type="text/javascript">
+
+            window.onload = function () { alert("@ViewBag.ResultErrorMessage"); };
+                        </script>
+
+                    }
+                </div>
+                <div class="form-group">
+                    <input type="file" name="file" id="file" />
+                    @*@Html.ValidationMessageFor(model => model.Label)*@
+                </div>
+                <table>
+                   
+                            <div class="form-group">
+                                <div class="form-check">
+                                    @Html.RadioButtonFor(Model => Model.Sort, SortType.firstname)@Html.Label("First Name")
+                                </div>
+                                <div class="form-check">
+                                    @Html.RadioButtonFor(Model => Model.Sort, SortType.lastname)@Html.Label("Last Name")
+                                </div>
+                            </div>
+                        
+                            <div class="form-group">
+                                <div class="form-check">
+                                    @Html.RadioButtonFor(Model => Model.Order, OrderType.ascending) @Html.Label("Ascending")
+                                </div>
+                                <div class="form-check">
+                                    @Html.RadioButtonFor(Model => Model.Order, OrderType.descending) @Html.Label("Descending")
+                                </div>
+                            </div>
+                      
+                 </table>
+
+                <div class="form-group">
+                    <tr>
+                        <td><input type="submit" class="btn btn-success" value="Submit" /></td>
+                    </tr>
+                </div>
+</table>
+
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <p>Results</p>
+                </tr>
 
 
-            @foreach (var line in @Model.output)
-            {
-                <p>
-                    @line
-                </p>
+                @foreach (var line in @Model.output)
+                {
+                    <p>
+                        @line
+                    </p>
 
 
-            }
+                }
 
-        </table>
+            </table>
 
-    }
+        }
+        </div>
+ 
+
 </body>
 </html>

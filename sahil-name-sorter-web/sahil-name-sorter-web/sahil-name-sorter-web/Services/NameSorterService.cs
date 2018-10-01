@@ -1,9 +1,8 @@
-﻿using sahilNameSorterWeb.Services;
+﻿using sahilNameSorterWeb.Models;
+using sahilNameSorterWeb.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace sahilNameSorterWeb
 {
@@ -14,7 +13,7 @@ namespace sahilNameSorterWeb
 
         }
 
-        public List<string> Run(string fileContents, bool firstnameOption, bool lastnameOption, bool NameAscendingOption, bool NameDecendingOption)
+        public List<string> Run(string fileContents, SortType sortType, OrderType orderType)
         {
             var lines = fileContents.Split(Environment.NewLine);
             //Print the query output on console
@@ -27,27 +26,27 @@ namespace sahilNameSorterWeb
             }
             var sortedNames = new List<Person>();
 
-            if (firstnameOption)
+            if (sortType == SortType.firstname)
             {
-                if (NameAscendingOption)
+                if (orderType == OrderType.ascending)
                 {
                     INameSorter namesorter = new NameSorterAscending(x => x.FullName);
                     sortedNames = namesorter.Sort(people);
                 }
-                else if (NameDecendingOption)
+                else if (orderType == OrderType.descending)
                 {
                     INameSorter namesorter = new NameSorterDecending(x => x.FullName);
                     sortedNames = namesorter.Sort(people);
                 }
             }
-            else if (lastnameOption)
+            else if (sortType == SortType.lastname)
             {
-                if (NameAscendingOption)
+                if (orderType == OrderType.ascending)
                 {
                     INameSorter namesorter = new NameSorterAscending(x => x.Surname);
                     sortedNames = namesorter.Sort(people);
                 }
-                else if (NameDecendingOption)
+                else if (orderType == OrderType.descending)
                 {
                     INameSorter namesorter = new NameSorterDecending(x => x.Surname);
                     sortedNames = namesorter.Sort(people);

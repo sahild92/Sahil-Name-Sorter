@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using SahilNameSorterCore.Domain;
 using System.Linq;
+using SahilNameSorterCore.Domain;
+
 namespace SahilNameSorterCore.Services
 {
-    class PersonService
+    public class PersonService
     {
         public static List<string> GetFullNames(List<Person> people)
         {

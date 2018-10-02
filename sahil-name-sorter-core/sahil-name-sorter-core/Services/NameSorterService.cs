@@ -1,10 +1,11 @@
-﻿using sahilNameSorterWeb.Models;
-using sahilNameSorterWeb.Services;
+﻿
+using SahilNameSorterCore.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using SahilNameSorterCore.Domain;
 
-namespace sahilNameSorterWeb
+namespace SahilNameSorterCore.Services
 {
     public class NameSorterService : INameSorterService
     {

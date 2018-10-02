@@ -1,4 +1,4 @@
-﻿namespace sahilNameSorterWeb.Models
+﻿namespace SahilNameSorterCore.Domain
 {
     public enum SortType
     {

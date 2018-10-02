@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using SahilNameSorterCore.Domain;
 using SahilNameSorterCore.Services;
 using Microsoft.Extensions.CommandLineUtils;
 using System.Reflection;
-
+using System.Text;
 
 namespace SahilNameSorter
 {
@@ -40,23 +36,39 @@ namespace SahilNameSorter
             app.HelpOption("-?|-h|--help");
 
             //  app.Description = "To sort names first specify the filepath followed by the firstname/lastname and lastly Ascending/Decending ";
-            app.VersionOption("-v|--version", () => {
+            app.VersionOption("-v|--version", () =>
+            {
                 return string.Format("Version {0}", Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion);
             });
             ;
             app.OnExecute(() =>
             {
+
                 Console.WriteLine("simple-command is executing");
+
                 if (firstnameOption.HasValue() && lastnameOption.HasValue())
                 {
                     throw new Exception("Cannot specify the first name and last name together");
                 }
 
-                if (NameAscendingOption.HasValue() && NameAscendingOption.HasValue())
+                if (NameAscendingOption.HasValue() && NameDecendingOption.HasValue())
                 {
                     throw new Exception("Cannot specify the ascending and decending together");
                 }
-                Run(basicOption, firstnameOption.HasValue(), lastnameOption.HasValue(), NameAscendingOption.HasValue(), NameDecendingOption.HasValue());
+                var sortType = SortType.firstname;
+                if (lastnameOption.HasValue())
+                {
+                    sortType = SortType.lastname;
+                }
+                var orderType = OrderType.ascending;
+                if (NameDecendingOption.HasValue())
+                {
+                    orderType = OrderType.descending;
+                }
+                //     Run(basicOption, firstnameOption.HasValue(), lastnameOption.HasValue(), NameAscendingOption.HasValue(), NameDecendingOption.HasValue());
+                var fileContents = System.IO.File.ReadAllText(basicOption.Value(), Encoding.UTF7);
+                var nameSorterService = new NameSorterService();
+                nameSorterService.Run(fileContents, sortType, orderType);
 
                 Console.WriteLine("simple-command has finished.");
                 return 0; //return 0 on a successful execution
@@ -80,49 +92,6 @@ namespace SahilNameSorter
             {
                 Console.WriteLine("Unable to execute application: {0}", ex.Message);
             }
-        }
-        private static void Run(CommandOption basicOption, bool firstnameOption, bool lastnameOption, bool NameAscendingOption, bool NameDecendingOption)
-        {
-            var lines = File.ReadAllLines(basicOption.Value(), Encoding.UTF7).ToList();
-            //Print the query output on console
-            // Execute the query and write out the new file.
-            var peopleService = new PersonService();
-            var people = new List<Person>();
-            foreach (var line in lines)
-            {
-                people.Add(new Person(line));
-            }
-            var sortedNames = new List<Person>();
-
-            if (firstnameOption)
-            {
-                if (NameAscendingOption)
-                {
-                    INameSorter namesorter = new NameSorterAscending(x => x.FirstName);
-                    sortedNames = namesorter.Sort(people);
-                }
-                else if (NameDecendingOption)
-                {
-                    INameSorter namesorter = new NameSorterDecending(x => x.FirstName);
-                    sortedNames = namesorter.Sort(people);
-                }
-            }
-            else if (lastnameOption)
-            {
-                if (NameAscendingOption)
-                {
-                    INameSorter namesorter = new NameSorterAscending(x => x.Surname);
-                    sortedNames = namesorter.Sort(people);
-                }
-                else if (NameDecendingOption)
-                {
-                    INameSorter namesorter = new NameSorterDecending(x => x.Surname);
-                    sortedNames = namesorter.Sort(people);
-                }
-            }
-            File.WriteAllLines(@"sorted-names-list.txt", PersonService.GetFullNames(sortedNames));
-            Console.WriteLine("Sorted names are written to file. Press any key to exit");
-            Console.ReadKey();
         }
     }
 }

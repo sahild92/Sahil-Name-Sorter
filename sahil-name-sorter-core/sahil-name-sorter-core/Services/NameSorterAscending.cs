@@ -1,4 +1,5 @@
-﻿using SahilNameSorterCore.Domain;
+﻿
+using SahilNameSorterCore.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,9 +7,9 @@ using System.Text;
 
 namespace SahilNameSorterCore.Services
 {
-   public class NameSorterAscending : INameSorter
+  public  class NameSorterAscending : INameSorter
     {
-        private readonly Func<Person, string> propertyFunc;
+        public readonly Func<Person, string> propertyFunc;
 
         public NameSorterAscending(Func<Person, string> propertyFunc)
         {

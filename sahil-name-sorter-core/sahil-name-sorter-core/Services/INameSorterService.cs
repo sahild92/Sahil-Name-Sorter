@@ -1,7 +1,7 @@
-﻿using sahilNameSorterWeb.Models;
+﻿using SahilNameSorterCore.Domain;
 using System.Collections.Generic;
 
-namespace sahilNameSorterWeb
+namespace SahilNameSorterCore.Services
 {
     public interface INameSorterService
     {

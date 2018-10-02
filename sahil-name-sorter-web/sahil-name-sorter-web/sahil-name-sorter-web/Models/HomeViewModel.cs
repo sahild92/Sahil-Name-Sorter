@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SahilNameSorterCore.Domain;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace sahilNameSorterWeb.Models

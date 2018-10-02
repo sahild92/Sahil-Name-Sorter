@@ -1,11 +1,12 @@
 ﻿
+using SahilNameSorterCore.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace sahilNameSorterWeb.Services
+namespace SahilNameSorterCore.Services
 {
-    interface INameSorter
+  public interface INameSorter
     {
         List<Person> Sort(List<Person> people);
 

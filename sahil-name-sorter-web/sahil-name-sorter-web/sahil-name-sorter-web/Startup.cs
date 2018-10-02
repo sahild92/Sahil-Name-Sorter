@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SahilNameSorterCore.Domain;
 using SahilNameSorterCore.Services;
 
 namespace sahilNameSorterWeb
@@ -19,6 +20,7 @@ namespace sahilNameSorterWeb
             services.AddSingleton<IGreeter, Greeter>();
             services.AddScoped<INameSorter, NameSorterAscending>();
             services.AddScoped<INameSorter, NameSorterDecending>();
+            services.AddTransient<IGenderizeClient, GenderizeClient>();
             services.AddMvc();
         }
 
@@ -39,6 +41,7 @@ namespace sahilNameSorterWeb
                 var greeting = greeter.ReadFile();
                 context.Response.ContentType = "text/plain";
                 await context.Response.WriteAsync(greeting);
+
             });
 
         }

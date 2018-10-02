@@ -24,6 +24,7 @@ namespace sahilNameSorterWeb.Models
         {
             output = new List<string>();
         }
-     
+        public Gender gender { get; set; }
+
     }
 }

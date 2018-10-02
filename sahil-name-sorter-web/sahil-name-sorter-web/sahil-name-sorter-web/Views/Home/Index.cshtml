@@ -18,15 +18,15 @@
         @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.HiddenFor(x => @Model.WelcomeMessage);
-        <table cellpadding="0" cellspacing="0">
-            <tr>
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <div class="form-group">
+                        <h2>Start Name Sorter on server</h2>
+                    </div>
+                </tr>
                 <div class="form-group">
-                    <h2>Start Name Sorter on server</h2>
-                </div>
-            </tr>
-            <div class="form-group">
-                <div class="form-group mx-sm-3 mb-2">
-                    <label for="file">Enter your name:</label>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="file">Enter your name:</label>
                     </div>
                     @Html.TextBoxFor(m => m.inputString)
 
@@ -47,54 +47,58 @@
                     @*@Html.ValidationMessageFor(model => model.Label)*@
                 </div>
                 <table>
-                   
-                            <div class="form-group">
-                                <div class="form-check">
-                                    @Html.RadioButtonFor(Model => Model.Sort, SortType.firstname)@Html.Label("First Name")
-                                </div>
-                                <div class="form-check">
-                                    @Html.RadioButtonFor(Model => Model.Sort, SortType.lastname)@Html.Label("Last Name")
-                                </div>
-                            </div>
-                        
-                            <div class="form-group">
-                                <div class="form-check">
-                                    @Html.RadioButtonFor(Model => Model.Order, OrderType.ascending) @Html.Label("Ascending")
-                                </div>
-                                <div class="form-check">
-                                    @Html.RadioButtonFor(Model => Model.Order, OrderType.descending) @Html.Label("Descending")
-                                </div>
-                            </div>
-                      
-                 </table>
+
+                    <div class="form-group">
+                        <div class="form-check">
+                            @Html.RadioButtonFor(Model => Model.Sort, SortType.firstname)@Html.Label("First Name")
+                        </div>
+                        <div class="form-check">
+                            @Html.RadioButtonFor(Model => Model.Sort, SortType.lastname)@Html.Label("Last Name")
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check">
+                            @Html.RadioButtonFor(Model => Model.Order, OrderType.ascending) @Html.Label("Ascending")
+                        </div>
+                        <div class="form-check">
+                            @Html.RadioButtonFor(Model => Model.Order, OrderType.descending) @Html.Label("Descending")
+                        </div>
+                    </div>
+
+                </table>
 
                 <div class="form-group">
                     <tr>
                         <td><input type="submit" class="btn btn-success" value="Submit" /></td>
                     </tr>
                 </div>
-</table>
+            </table>
 
             <table cellpadding="0" cellspacing="0">
                 <tr>
-                    <p>Results</p>
+                    <div multiple class="form-control">
+                        <p>Results</p>
+                    </div>
                 </tr>
 
 
                 @foreach (var line in @Model.output)
                 {
+                <div multiple class="form-control">
                     <p>
                         @line
                     </p>
+                </div>
 
-
-                }
-
-            </table>
-
+            
         }
-        </div>
- 
 
-</body>
+                </table>
+
+            }
+        </div>
+
+
+    </body>
 </html>

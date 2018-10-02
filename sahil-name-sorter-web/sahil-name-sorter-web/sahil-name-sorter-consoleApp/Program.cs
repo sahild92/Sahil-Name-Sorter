@@ -4,6 +4,9 @@ using SahilNameSorterCore.Services;
 using Microsoft.Extensions.CommandLineUtils;
 using System.Reflection;
 using System.Text;
+using System.Collections.Generic;
+
+
 
 namespace SahilNameSorter
 {
@@ -92,6 +95,26 @@ namespace SahilNameSorter
             {
                 Console.WriteLine("Unable to execute application: {0}", ex.Message);
             }
+
+
+            
         }
+
+      /*  public static void GenderType(List<string> sortedNames)
+        {
+            List<string> genderType = new List<string>();
+            foreach (string n in sortedNames)
+            {
+                string apiData = GetAPIData(n);
+                List<String> thisName = ParseData(apiData);
+                double prob = Convert.ToDouble(thisName[1]) * 100;
+                string thisData = null;
+                if (!String.IsNullOrEmpty(thisName[0])) thisData = "The name '" + n + "' has a " + prob + "% chance of being a " + thisName[0] + ".";
+                else continue;
+                genderType.Add(thisData);
+            }*/
+
+        }
+
     }
-}
+

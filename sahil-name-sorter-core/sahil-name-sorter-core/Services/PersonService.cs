@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using SahilNameSorter.Domain;
+using SahilNameSorterCore.Domain;
 using System.Linq;
-namespace SahilNameSorter.Services
+namespace SahilNameSorterCore.Services
 {
     class PersonService
     {

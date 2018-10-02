@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using SahilNameSorter.Domain;
-using SahilNameSorter.Services;
+using SahilNameSorterCore.Domain;
+using SahilNameSorterCore.Services;
 using Microsoft.Extensions.CommandLineUtils;
 using System.Reflection;
+
 
 namespace SahilNameSorter
 {

@@ -14,6 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\sahil-name-sorter-core\sahil-name-sorter-core\sahil-name-sorter-core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Data\names.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

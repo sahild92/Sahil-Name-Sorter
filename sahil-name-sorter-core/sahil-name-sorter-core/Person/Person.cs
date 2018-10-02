@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-namespace SahilNameSorter.Domain
+namespace SahilNameSorterCore.Domain
 {
     public class Person
     {

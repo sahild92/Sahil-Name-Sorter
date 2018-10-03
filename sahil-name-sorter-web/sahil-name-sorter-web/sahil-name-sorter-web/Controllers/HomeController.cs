@@ -49,12 +49,11 @@ namespace sahilNameSorterWeb.Controllers
             stream.ReadAsync(buffer).GetAwaiter().GetResult();
             var contents = System.Text.Encoding.UTF7.GetString(buffer);
             var output1 = await nameSorterService.Run(contents, model.Sort, model.Order);
-            
-            
+            var sortedLines = PersonService.GetFullNames(output1);
 
             var model1 = new HomeViewModel
             {
-                output = output1
+                Sortedpeople = output1
 
             };
             return View(model1);

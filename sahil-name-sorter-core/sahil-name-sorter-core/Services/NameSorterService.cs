@@ -19,7 +19,7 @@ namespace SahilNameSorterCore.Services
             this.client = client;
         }
 
-        public async Task<List<string>> Run(string fileContents, SortType sortType, OrderType orderType)
+        public async Task<List<Person>> Run(string fileContents, SortType sortType, OrderType orderType)
         {
             var lines = fileContents.Split(Environment.NewLine);
             //Print the query output on console
@@ -65,15 +65,13 @@ namespace SahilNameSorterCore.Services
                 var jsonResponse = await client.GetGender(person.FirstName);
                 var genderObject = JsonConvert.DeserializeObject<GenerizeResult>(jsonResponse);
                 person.Gender = genderObject.gender;
+               
             }
-
-            
-            
             var sortedLines = PersonService.GetFullNames(sortedNames);
 
             File.WriteAllLines(@"sorted-names-list.txt", sortedLines);
             Console.WriteLine("Sorted names are written to file. Press any key to exit");
-            return sortedLines;
+            return sortedNames;
         }
     }
 }

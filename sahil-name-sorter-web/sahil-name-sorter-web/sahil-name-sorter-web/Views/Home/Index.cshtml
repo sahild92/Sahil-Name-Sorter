@@ -84,22 +84,19 @@
                 </tr>
 
 
-                @foreach (var line in @Model.output)
+                @foreach (var person in @Model.Sortedpeople)
                 {
                     <div multiple class="form-control">
                         <p>
-                            @line
+                            @person.FullName
+                            <span>@person.Gender
+                            </span>
                         </p>
                     </div>
 
                 }
            
-                <div multiple class="form-control">
-                    <p>
 
-                    </p>
-                </div>
-              
             </table>
 
             }

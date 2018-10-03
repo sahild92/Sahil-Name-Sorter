@@ -13,7 +13,7 @@ namespace sahilNameSorterWeb.Models
         [Required(ErrorMessage = "Type is required.")]
         public SortType Sort { get; set; }
         //public IFormFile FileStream { get; set; }
-        public List<string> output { get; set; }
+        public List<Person> Sortedpeople { get; set; }
 
         public string ErrorMessage { get; set; }
 
@@ -22,7 +22,7 @@ namespace sahilNameSorterWeb.Models
         public string inputString { get; set; }
         public HomeViewModel()
         {
-            output = new List<string>();
+            Sortedpeople = new List<Person>();
         }
         public Gender gender { get; set; }
 

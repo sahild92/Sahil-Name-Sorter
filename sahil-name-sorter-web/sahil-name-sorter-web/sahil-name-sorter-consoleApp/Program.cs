@@ -90,8 +90,11 @@ namespace SahilNameSorter
                 var fileContents = System.IO.File.ReadAllText(basicOption.Value(), Encoding.UTF7);
 
                 var nameSorterService = serviceProvider.GetService<INameSorterService>();
-                nameSorterService.Run(fileContents, sortType, orderType).GetAwaiter().GetResult();
-
+                var sortedPeople = nameSorterService.Run(fileContents, sortType, orderType).GetAwaiter().GetResult();
+                foreach(var person in sortedPeople)
+                {
+                    Console.WriteLine($"FirstName {person.FirstName}, FullName {person.FullName}, Gender {person.Gender} ");
+                }
                 Console.WriteLine("simple-command has finished.");
                 return 0; //return 0 on a successful execution
             });

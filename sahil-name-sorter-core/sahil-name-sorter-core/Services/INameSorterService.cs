@@ -6,6 +6,6 @@ namespace SahilNameSorterCore.Services
 {
     public interface INameSorterService
     {
-        Task<List<string>> Run(string fileContents, SortType sortType, OrderType orderType);
+        Task<List<Person>> Run(string fileContents, SortType sortType, OrderType orderType);
     }
 }

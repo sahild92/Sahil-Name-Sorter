@@ -6,6 +6,7 @@ namespace SahilNameSorterCore.Domain
         public string FullName { get; set; }
         public string Surname { get; set; }
         public string FirstName { get; set; }
+        public string Gender { get; set; }
         public Person(string fullName)
         {
             var nameComponents = fullName.Split(' ');

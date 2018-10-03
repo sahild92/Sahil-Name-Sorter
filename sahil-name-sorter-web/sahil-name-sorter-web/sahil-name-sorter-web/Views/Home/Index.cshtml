@@ -1,5 +1,6 @@
 ﻿@model sahilNameSorterWeb.Models.HomeViewModel
 @using SahilNameSorterCore.Domain
+@using SahilNameSorterCore.Services
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -85,16 +86,21 @@
 
                 @foreach (var line in @Model.output)
                 {
+                    <div multiple class="form-control">
+                        <p>
+                            @line
+                        </p>
+                    </div>
+
+                }
+           
                 <div multiple class="form-control">
                     <p>
-                        @line
+
                     </p>
                 </div>
-
-            
-        }
-
-                </table>
+              
+            </table>
 
             }
         </div>

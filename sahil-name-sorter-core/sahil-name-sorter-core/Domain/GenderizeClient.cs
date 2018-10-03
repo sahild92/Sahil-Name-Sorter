@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Http;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -8,20 +9,26 @@ namespace SahilNameSorterCore.Domain
 {
     public interface IGenderizeClient
     {
-        Task<List<string>> GetGender();
+        Task<string> GetGender(string firstName);
     }
 
     public class GenderizeClient : IGenderizeClient
     {
-        public async Task<List<string>> GetGender()
+        private readonly IHttpClientFactory _httpClientFactory;
+        public GenderizeClient(IHttpClientFactory httpClientFactory)
         {
-            using (HttpClient client = new HttpClient())
-            {
-                //Blah blah do everything here I want to do. 
-                //var result = await client.GetAsync("/tweets");
+            _httpClientFactory = httpClientFactory;
+        }
+        public async Task<string> GetGender(string firstName)
+        {
 
-                return new List<string> { "Hello from api" };
-            }
+            //Blah blah do everything here I want to do. 
+            //var result = await client.GetAsync("/tweets");
+            // return new List<string> { "Hello from api" };  
+            var client = _httpClientFactory.CreateClient("gendrizeClient");
+            Console.WriteLine("Calling genderize api");
+          var responseMessage = await client.GetAsync("?name=" + firstName);
+            return await responseMessage.Content.ReadAsStringAsync();
         }
     }
 }

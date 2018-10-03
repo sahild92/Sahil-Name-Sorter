@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -20,6 +21,13 @@ namespace sahilNameSorterWeb
             services.AddSingleton<IGreeter, Greeter>();
             services.AddScoped<INameSorter, NameSorterAscending>();
             services.AddScoped<INameSorter, NameSorterDecending>();
+            services.AddHttpClient("gendrizeClient", client =>
+            {
+                client.BaseAddress = new Uri("https://api.genderize.io/");
+                client.Timeout = TimeSpan.FromMinutes(1);
+            });
+            services.AddHttpClient();
+            // services.AddHttpClient<IGenderizeClient, GenderizeClient>();
             services.AddTransient<IGenderizeClient, GenderizeClient>();
             services.AddMvc();
         }

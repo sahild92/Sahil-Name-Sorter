@@ -7,15 +7,19 @@ using sahilNameSorterWeb.Models;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace sahilNameSorterWeb.Controllers
 {
     public class HomeController : Controller
     {
         private readonly INameSorterService nameSorterService;
-        public HomeController(INameSorterService nameSorterService)
+        private readonly IGenderizeClient client;
+
+        public HomeController(INameSorterService nameSorterService, IGenderizeClient client)
         {
             this.nameSorterService = nameSorterService;
+            this.client = client;
         }
 
         public IActionResult Index()
@@ -26,7 +30,7 @@ namespace sahilNameSorterWeb.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(HomeViewModel model, IFormFile file)
+        public async Task<IActionResult> Index(HomeViewModel model, IFormFile file)
         {
             if (file == null)
             {
@@ -44,13 +48,17 @@ namespace sahilNameSorterWeb.Controllers
 
             stream.ReadAsync(buffer).GetAwaiter().GetResult();
             var contents = System.Text.Encoding.UTF7.GetString(buffer);
-            var output1 = nameSorterService.Run(contents, model.Sort, model.Order);
+            var output1 = await nameSorterService.Run(contents, model.Sort, model.Order);
+            
+            
+
             var model1 = new HomeViewModel
             {
                 output = output1
 
             };
             return View(model1);
+
         }
 
 

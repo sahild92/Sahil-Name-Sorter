@@ -5,8 +5,9 @@ using Microsoft.Extensions.CommandLineUtils;
 using System.Reflection;
 using System.Text;
 using System.Collections.Generic;
-
-
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using System.Threading.Tasks;
 
 namespace SahilNameSorter
 {
@@ -49,6 +50,23 @@ namespace SahilNameSorter
 
                 Console.WriteLine("simple-command is executing");
 
+
+                //setup our DI
+                var serviceProvider = new ServiceCollection()
+                    .AddScoped<INameSorterService, NameSorterService>()
+                    .AddSingleton<IGreeter, Greeter>()
+                    .AddScoped<INameSorter, NameSorterAscending>()
+                    .AddScoped<INameSorter, NameSorterDecending>()
+                    .AddHttpClient("gendrizeClient", client =>
+                    {
+                        client.BaseAddress = new Uri("https://api.genderize.io/");
+                        client.Timeout = TimeSpan.FromMinutes(1);
+                    }).Services
+                    .AddHttpClient()
+                    // services.AddHttpClient<IGenderizeClient, GenderizeClient>();
+                    .AddTransient<IGenderizeClient, GenderizeClient>()
+                    .BuildServiceProvider();
+
                 if (firstnameOption.HasValue() && lastnameOption.HasValue())
                 {
                     throw new Exception("Cannot specify the first name and last name together");
@@ -70,8 +88,9 @@ namespace SahilNameSorter
                 }
                 //     Run(basicOption, firstnameOption.HasValue(), lastnameOption.HasValue(), NameAscendingOption.HasValue(), NameDecendingOption.HasValue());
                 var fileContents = System.IO.File.ReadAllText(basicOption.Value(), Encoding.UTF7);
-                var nameSorterService = new NameSorterService();
-                nameSorterService.Run(fileContents, sortType, orderType);
+
+                var nameSorterService = serviceProvider.GetService<INameSorterService>();
+                nameSorterService.Run(fileContents, sortType, orderType).GetAwaiter().GetResult();
 
                 Console.WriteLine("simple-command has finished.");
                 return 0; //return 0 on a successful execution
@@ -82,7 +101,12 @@ namespace SahilNameSorter
             {
                 // This begins the actual execution of the application
                 Console.WriteLine("ConsoleArgs app executing...");
+
+
+                
+
                 app.Execute(args);
+                
             }
             catch (CommandParsingException ex)
             {

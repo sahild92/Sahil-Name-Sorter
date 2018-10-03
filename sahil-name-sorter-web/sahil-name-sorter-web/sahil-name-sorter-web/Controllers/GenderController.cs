@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace sahilNameSorterWeb.Controllers
 {
-
  [Route("api/[controller]")]
 public class GenderController : Controller
 {
@@ -22,9 +21,9 @@ public class GenderController : Controller
     }
 
     [HttpGet]
-    public async Task<IEnumerable<string>> Get()
+    public async Task<string> Get()
     {
-        return await _genderizeClient.GetGender();
+        return await _genderizeClient.GetGender("");
     }
 }
 }

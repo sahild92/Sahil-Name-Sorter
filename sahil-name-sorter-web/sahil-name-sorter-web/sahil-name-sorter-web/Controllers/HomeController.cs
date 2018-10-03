@@ -27,7 +27,7 @@ namespace sahilNameSorterWeb.Controllers
 
         [HttpPost]
         public IActionResult Index(HomeViewModel model, IFormFile file)
-        { 
+        {
             if (file == null)
             {
                 ViewBag.ResultErrorMessage = "No file was chosen.";
@@ -38,43 +38,22 @@ namespace sahilNameSorterWeb.Controllers
             {
                 return BadRequest(ModelState);
             }
-        
+
             var stream = file.OpenReadStream();
             var buffer = new byte[file.Length];
 
             stream.ReadAsync(buffer).GetAwaiter().GetResult();
-            var contents = System.Text.Encoding.UTF7.GetString(buffer);    
-            var output1 = nameSorterService.Run(contents, model.Sort, model.Order);                
+            var contents = System.Text.Encoding.UTF7.GetString(buffer);
+            var output1 = nameSorterService.Run(contents, model.Sort, model.Order);
             var model1 = new HomeViewModel
             {
                 output = output1
 
             };
             return View(model1);
-            }
-           void GetGender()
-           {
-            using (HttpClient client = new HttpClient()) 
-           {
-
-           }
-
         }
-        [Route("api/[controller]")]
-        public class TweetController : Controller
-        {
-            private readonly IGenderizeClient _genderizeClient;
 
-            public TweetController(IGenderizeClient genderizeClient)
-            {
-                _genderizeClient = genderizeClient;
-            }
 
-            [HttpGet]
-            public async Task<IEnumerable<string>> Get()
-            {
-                return await _genderizeClient.GetGender();
-            }
-        }
+
     }
-}      
+}

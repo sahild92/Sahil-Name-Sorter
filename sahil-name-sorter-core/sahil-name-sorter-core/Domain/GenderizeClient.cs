@@ -20,7 +20,7 @@ namespace SahilNameSorterCore.Domain
                 //Blah blah do everything here I want to do. 
                 //var result = await client.GetAsync("/tweets");
 
-                return new List<string> { "Tweet tweet" };
+                return new List<string> { "Hello from api" };
             }
         }
     }

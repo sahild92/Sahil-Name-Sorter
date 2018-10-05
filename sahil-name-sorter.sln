@@ -5,11 +5,11 @@ VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sahil-name-sorter-web", "sahil-name-sorter-web\sahil-name-sorter-web.csproj", "{9764F904-AE59-47C3-8728-5039C0A9A855}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sahil-name-sorter-services", "..\..\sahil-name-sorter-core\sahil-name-sorter-core\sahil-name-sorter-services.csproj", "{01B1F210-A3CC-424E-BA40-92C5130FD250}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sahil-name-sorter-console", "sahil-name-sorter-consoleApp\sahil-name-sorter-console.csproj", "{CB106DBF-14DB-483C-8FA7-59915745145E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sahil-name-sorter-test", "sahil-name-sorter-test\sahil-name-sorter-test.csproj", "{55E9BB1F-06F5-4CA5-89BD-4673B0D8CF10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sahil-name-sorter-test", "sahil-name-sorter-test\sahil-name-sorter-test.csproj", "{55E9BB1F-06F5-4CA5-89BD-4673B0D8CF10}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sahil-name-sorter-core", "sahil-name-sorter-core\sahil-name-sorter-core.csproj", "{18D99250-14E8-4044-BF05-F297AAA91715}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		{9764F904-AE59-47C3-8728-5039C0A9A855}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9764F904-AE59-47C3-8728-5039C0A9A855}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9764F904-AE59-47C3-8728-5039C0A9A855}.Release|Any CPU.Build.0 = Release|Any CPU
-		{01B1F210-A3CC-424E-BA40-92C5130FD250}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{01B1F210-A3CC-424E-BA40-92C5130FD250}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{01B1F210-A3CC-424E-BA40-92C5130FD250}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{01B1F210-A3CC-424E-BA40-92C5130FD250}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CB106DBF-14DB-483C-8FA7-59915745145E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CB106DBF-14DB-483C-8FA7-59915745145E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB106DBF-14DB-483C-8FA7-59915745145E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{55E9BB1F-06F5-4CA5-89BD-4673B0D8CF10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55E9BB1F-06F5-4CA5-89BD-4673B0D8CF10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55E9BB1F-06F5-4CA5-89BD-4673B0D8CF10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18D99250-14E8-4044-BF05-F297AAA91715}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18D99250-14E8-4044-BF05-F297AAA91715}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18D99250-14E8-4044-BF05-F297AAA91715}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18D99250-14E8-4044-BF05-F297AAA91715}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

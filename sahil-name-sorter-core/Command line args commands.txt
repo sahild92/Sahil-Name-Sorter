@@ -1,2 +1,0 @@
- dotnet .\sahil-name-sorter-core.dll -I="filepath1.txt,c:\test\fp2.txt" 
---input ..\..\..\Data\unsorted-names-list.txt

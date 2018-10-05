@@ -1,6 +1,7 @@
 ﻿using SahilNameSorterCore.Domain;
 using SahilNameSorterCore.Services;
 using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace sahilnamesorter.Tests
@@ -32,6 +33,13 @@ namespace sahilnamesorter.Tests
             //Assert
             Assert.NotNull(fileContents);
         }
+        [Fact]
+        public void SortInAssendingOrder()
+        {
 
-    }
+        }
+            
+   }
+
 }
+

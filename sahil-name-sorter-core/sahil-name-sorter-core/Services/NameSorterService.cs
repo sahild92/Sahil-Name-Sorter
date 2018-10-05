@@ -7,15 +7,17 @@ using SahilNameSorterCore.Domain;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using sahil_name_sorter_core.Domain;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace SahilNameSorterCore.Services
 {
     public class NameSorterService : INameSorterService
     {
+        private IMemoryCache _cache;
         private readonly IGenderizeClient client;
-        public NameSorterService(IGenderizeClient client)
+        public NameSorterService(IGenderizeClient client, IMemoryCache memoryCache)
         {
-            
+            _cache = memoryCache;
             this.client = client;
         }
 
@@ -62,16 +64,25 @@ namespace SahilNameSorterCore.Services
 
             foreach(var person in sortedNames)
             {
-                var jsonResponse = await client.GetGender(person.FirstName);
-                var genderObject = JsonConvert.DeserializeObject<GenerizeResult>(jsonResponse);
-                person.Gender = genderObject.gender;
-               
+               var cacheResult = _cache.Get<GenderizeResult>(person.FirstName);
+                if (cacheResult == null)
+                {
+                    var jsonResponse = await client.GetGender(person.FirstName);
+                    var genderObject = JsonConvert.DeserializeObject<GenderizeResult>(jsonResponse);
+                    person.Gender = genderObject.gender;
+                    var saveCache = _cache.Set(person.FirstName, genderObject);
+                    
+                }
+                else
+                {
+                    person.Gender = cacheResult.gender;
+                }
             }
             var sortedLines = PersonService.GetFullNames(sortedNames);
-
             File.WriteAllLines(@"sorted-names-list.txt", sortedLines);
             Console.WriteLine("Sorted names are written to file. Press any key to exit");
             return sortedNames;
+
         }
     }
 }

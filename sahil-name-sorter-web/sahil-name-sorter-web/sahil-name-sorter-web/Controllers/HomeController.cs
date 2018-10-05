@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Linq;
+using System;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace sahilNameSorterWeb.Controllers
 {
@@ -32,6 +34,7 @@ namespace sahilNameSorterWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(HomeViewModel model, IFormFile file)
         {
+           
             if (file == null)
             {
                 ViewBag.ResultErrorMessage = "No file was chosen.";
@@ -59,8 +62,7 @@ namespace sahilNameSorterWeb.Controllers
             return View(model1);
 
         }
-
-
+        
 
     }
 }

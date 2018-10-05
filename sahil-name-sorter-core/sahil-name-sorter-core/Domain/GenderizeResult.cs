@@ -4,7 +4,7 @@ using System.Text;
 
 namespace sahil_name_sorter_core.Domain
 {
-    public class GenerizeResult
+    public class GenderizeResult
     {
         public string name { get; set; }
         public string gender { get; set; }

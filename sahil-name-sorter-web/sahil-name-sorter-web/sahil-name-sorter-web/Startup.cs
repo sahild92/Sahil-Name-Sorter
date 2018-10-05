@@ -30,6 +30,7 @@ namespace sahilNameSorterWeb
             // services.AddHttpClient<IGenderizeClient, GenderizeClient>();
             services.AddTransient<IGenderizeClient, GenderizeClient>();
             services.AddMvc();
+            services.AddMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

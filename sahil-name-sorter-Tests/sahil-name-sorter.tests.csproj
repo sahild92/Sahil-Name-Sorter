@@ -74,10 +74,27 @@
     <Analyzer Include="..\sahil-name-sorter\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\sahil-name-sorter-core\sahil-name-sorter-core\sahil-name-sorter-services.csproj">
+      <Project>{01b1f210-a3cc-424e-ba40-92c5130fd250}</Project>
+      <Name>sahil-name-sorter-services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\sahil-name-sorter\sahil-name-sorter.csproj">
       <Project>{a91301ae-a4e3-4485-b5a4-3dd75f369117}</Project>
       <Name>sahil-name-sorter</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\names.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\sorted-names-list.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

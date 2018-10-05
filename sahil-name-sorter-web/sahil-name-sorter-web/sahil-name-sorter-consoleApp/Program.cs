@@ -122,8 +122,7 @@ namespace SahilNameSorter
             catch (Exception ex)
             {
                 Console.WriteLine("Unable to execute application: {0}", ex.Message);
-            }
-
+            }  
 
             
         }

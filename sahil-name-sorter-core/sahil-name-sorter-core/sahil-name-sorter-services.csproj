@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\unsorted-names-list.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CommandLineParser20" Version="2.0.0" />
     <PackageReference Include="FluentCommandLineParser" Version="1.4.3" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.1.2" />
@@ -27,9 +31,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Data\sorted-names-list.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\unsorted-names-list.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -69,7 +69,10 @@ namespace SahilNameSorterCore.Services
                 {
                     var jsonResponse = await client.GetGender(person.FirstName);
                     var genderObject = JsonConvert.DeserializeObject<GenderizeResult>(jsonResponse);
-                    
+                    if (genderObject == null)
+                    {
+                 
+                    }
                     
                         person.Gender = genderObject.gender;
                         var saveCache = _cache.Set(person.FirstName, genderObject);

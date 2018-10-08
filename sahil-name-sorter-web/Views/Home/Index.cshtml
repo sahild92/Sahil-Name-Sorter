@@ -91,7 +91,12 @@
                         <b>Name - </b>    @person.FullName
 
                         <span>
-                            <b>  Gender </b> - @person.Gender
+                            @if (person.Gender == null) {
+                               <span> <b>  Gender </b> Not Found </span>
+                            }
+                            else {
+                            <b>  Gender </b> @person.Gender
+                        }
                         </span>
                     </p>
                 </div>

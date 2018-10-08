@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>4f928bd8-96c5-4e47-8de2-b394e642a7ca</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/51cf4c9b-9ee5-4df4-9b05-f265fa830515/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/sahil-name-sorter-web</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/51cf4c9b-9ee5-4df4-9b05-f265fa830515/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/sahil-name-sorter-web</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,6 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="bootstrap" Version="4.1.3" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNet.WebApi" Version="5.2.6" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="2.1.1" />
@@ -27,6 +30,10 @@
     <None Update="Data\unsorted-names-list.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
 </Project>

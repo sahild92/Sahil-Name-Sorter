@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using SahilNameSorterCore.Domain;
 using SahilNameSorterCore.Services;
 
@@ -17,6 +18,12 @@ namespace sahilNameSorterWeb
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton(new LoggerFactory()
+                .AddConsole()
+                .AddDebug()
+                .AddAzureWebAppDiagnostics());
+
+            services.AddLogging();
             services.AddScoped<INameSorterService, NameSorterService>();
             services.AddSingleton<IGreeter, Greeter>();
             services.AddScoped<INameSorter, NameSorterAscending>();
@@ -34,7 +41,7 @@ namespace sahilNameSorterWeb
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IConfiguration configuration, IGreeter greeter)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IConfiguration configuration, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -45,13 +52,15 @@ namespace sahilNameSorterWeb
 
             app.UseMvc(configureRoutes);
 
-            app.Run(async (context) =>
-            {
-                var greeting = greeter.ReadFile();
-                context.Response.ContentType = "text/plain";
-                await context.Response.WriteAsync(greeting);
+            loggerFactory.AddApplicationInsights(app.ApplicationServices, LogLevel.Information);
 
-            });
+            //app.Run(async (context) =>
+            //{
+            //    var greeting = greeter.ReadFile();
+            //    context.Response.ContentType = "text/plain";
+            //    await context.Response.WriteAsync(greeting);
+
+            //});
 
         }
 

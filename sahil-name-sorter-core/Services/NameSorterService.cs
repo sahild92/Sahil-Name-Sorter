@@ -8,16 +8,20 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using sahil_name_sorter_core.Domain;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging;
 
 namespace SahilNameSorterCore.Services
 {
     public class NameSorterService : INameSorterService
     {
         private IMemoryCache _cache;
+        private readonly ILogger<NameSorterService> logger;
         private readonly IGenderizeClient client;
-        public NameSorterService(IGenderizeClient client, IMemoryCache memoryCache)
+
+        public NameSorterService(IGenderizeClient client, IMemoryCache memoryCache, ILogger<NameSorterService> logger)
         {
             _cache = memoryCache;
+            this.logger = logger;
             this.client = client;
         }
 
@@ -85,7 +89,10 @@ namespace SahilNameSorterCore.Services
             }
             var sortedLines = PersonService.GetFullNames(sortedNames);
             File.WriteAllLines(@"sorted-names-list.txt", sortedLines);
+
+            sortedLines.ForEach(line => logger.LogInformation(line));
             Console.WriteLine("Sorted names are written to file. Press any key to exit");
+
             return sortedNames;
 
         }

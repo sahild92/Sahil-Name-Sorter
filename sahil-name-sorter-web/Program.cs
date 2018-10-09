@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace sahilNameSorterWeb
 {
@@ -22,11 +23,18 @@ namespace sahilNameSorterWeb
             
         }
 
-      
+
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args, string appInsightsKey) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseApplicationInsights(appInsightsKey)
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+                .ConfigureLogging((hostingContext, logging) =>
+                {
+                    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                    logging.AddConsole();
+                });
+            
+            
     }
 }

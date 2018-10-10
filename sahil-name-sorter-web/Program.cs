@@ -22,9 +22,6 @@ namespace sahilNameSorterWeb
             CreateWebHostBuilder(args, ikey).Build().Run();
             
         }
-
-
-
         public static IWebHostBuilder CreateWebHostBuilder(string[] args, string appInsightsKey) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseApplicationInsights(appInsightsKey)
@@ -33,8 +30,6 @@ namespace sahilNameSorterWeb
                 {
                     logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
                     logging.AddConsole();
-                });
-            
-            
+                });         
     }
 }

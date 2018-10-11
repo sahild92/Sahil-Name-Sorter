@@ -13,17 +13,17 @@ namespace SahilNameSorterCore.DataAccess
         {
 
         }
-        public DbSet<PersonFullNames> PersonFullNames { get; set; }
+        public DbSet<Person> Person { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<PersonFullNames>()
-                .HasData(new PersonFullNames()
+            modelBuilder.Entity<Person>()
+                .HasData(new Person()
                 {
                     ID = 1,
                     FirstName = "Sahil",
-                    LastName = "Deshpande"
+                    Surname = "Deshpande"
                 });
         }
     }

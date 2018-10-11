@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using SahilNameSorterCore.Entities;
 using SahilNameSorterCore.Domain;
 using SahilNameSorterCore.Services;
 using sahilNameSorterWeb.Models;

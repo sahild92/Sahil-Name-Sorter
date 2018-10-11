@@ -8,6 +8,10 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
+using SahilNameSorterCore.DataAccess;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace SahilNameSorter
 {
@@ -50,6 +54,11 @@ namespace SahilNameSorter
 
                 Console.WriteLine("simple-command is executing");
 
+                IConfigurationRoot configuration = new ConfigurationBuilder()
+               .SetBasePath(Directory.GetCurrentDirectory())
+               .AddJsonFile("appsettings.json")
+               .Build();
+
 
                 //setup our DI
                 var serviceProvider = new ServiceCollection()
@@ -57,6 +66,10 @@ namespace SahilNameSorter
                     .AddSingleton<IGreeter, Greeter>()
                     .AddScoped<INameSorter, NameSorterAscending>()
                     .AddScoped<INameSorter, NameSorterDecending>()
+                    .AddDbContext<NameSorterContext>(cfg =>
+                     {
+                         cfg.UseSqlServer(configuration.GetConnectionString("NameSorterConnectionString"));
+                     })
                     .AddHttpClient("gendrizeClient", client =>
                     {
                         client.BaseAddress = new Uri("https://api.genderize.io/");
@@ -65,6 +78,7 @@ namespace SahilNameSorter
                     .AddHttpClient()
                     // services.AddHttpClient<IGenderizeClient, GenderizeClient>();
                     .AddTransient<IGenderizeClient, GenderizeClient>()
+                    .AddScoped<IPersonRepository, PersonRepository>()
                     .AddMemoryCache()
                     .BuildServiceProvider();
 

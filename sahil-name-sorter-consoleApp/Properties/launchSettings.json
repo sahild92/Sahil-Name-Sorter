@@ -2,7 +2,7 @@
   "profiles": {
     "sahil-name-sorter-consoleApp": {
       "commandName": "Project",
-      "commandLineArgs": "-fp .\\data\\\\unsorted-names-list.txt -f -a"
+      "commandLineArgs": "-fp ..\\..\\..\\..\\\\data\\unsorted-names-list.txt -f -a"
     }
   }
 }

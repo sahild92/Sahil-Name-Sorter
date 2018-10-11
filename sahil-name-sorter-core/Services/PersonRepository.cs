@@ -16,28 +16,28 @@ namespace SahilNameSorterCore.Services
             _ctx = ctx;
         }
 
-        public PersonFullNames Get(int id)
+        public Person Get(int id)
         {
-            return _ctx.PersonFullNames.Where(person => person.ID == id).FirstOrDefault();
+            return _ctx.Person.Where(person => person.ID == id).FirstOrDefault();
         }
 
-        public IEnumerable<PersonFullNames> GetByName(string firstname, string lastname)
+        public IEnumerable<Person> GetByName(string firstname, string lastname, string gender)
         {
-            var personFullNameEntities = _ctx.PersonFullNames.Where(person => person.FirstName == firstname && person.LastName == lastname);
+            var personFullNameEntities = _ctx.Person.Where(person => person.FirstName == firstname && person.Surname == lastname && person.Gender == gender);
 
             return personFullNameEntities;
         }
 
-        public IEnumerable<PersonFullNames> GetAll()
+        public IEnumerable<Person> GetAll()
         {
-            return _ctx.PersonFullNames
+            return _ctx.Person
                 .OrderBy(p => p.ID)
               
                 .ToList();
         }
-        public void Add(PersonFullNames personFullNames)
+        public void Add(Person personFullNames)
         {
-            _ctx.PersonFullNames.Add(personFullNames);
+            _ctx.Person.Add(personFullNames);
         }
 
         public bool SaveAll()

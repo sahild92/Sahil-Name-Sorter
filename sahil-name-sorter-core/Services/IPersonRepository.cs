@@ -5,11 +5,11 @@ namespace SahilNameSorterCore.Services
 {
    public interface IPersonRepository
     {
-        PersonFullNames Get(int id);
-        IEnumerable<PersonFullNames> GetAll();
+        Person Get(int id);
+        IEnumerable<Person> GetAll();
 
-        IEnumerable<PersonFullNames> GetByName(string firstname, string lastname);
-        void Add(PersonFullNames personFullNames);
+        IEnumerable<Person> GetByName(string firstname, string lastname, string gender);
+        void Add(Person personFullNames);
 
         bool SaveAll();
     }

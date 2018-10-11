@@ -25,13 +25,13 @@ namespace SahilNameSorterCore.DataAccess
         {
             _ctx.Database.EnsureCreated(); //makes sure database exists
 
-            if (!_ctx.PersonFullNames.Any())
+            if (!_ctx.Person.Any())
             {
                 //Create sample data
                 var filepath = Path.Combine(_hosting.ContentRootPath,"Data/Names.json");
                 var json = File.ReadAllText(filepath);
-                var PersonFullNames = JsonConvert.DeserializeObject<IEnumerable<PersonFullNames>>(json);
-                _ctx.PersonFullNames.AddRange(PersonFullNames);
+                var people = JsonConvert.DeserializeObject<IEnumerable<Person>>(json);
+                _ctx.Person.AddRange(people);
 
                 _ctx.SaveChanges();
             }

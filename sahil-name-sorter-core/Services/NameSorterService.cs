@@ -99,23 +99,25 @@ namespace SahilNameSorterCore.Services
             File.WriteAllLines(@"sorted-names-list.txt", sortedLines);
             foreach (var person in sortedNames)
             {
-                var personfullnames = new PersonFullNames()
+                var personfullnames = new Entities.Person()
                 {
                     FirstName = person.FirstName,
-                    LastName = person.Surname
+                    Surname = person.Surname,
+                    Gender = person.Gender
                 };
       
-                var existingRecords = personRepository.GetByName(personfullnames.FirstName, personfullnames.LastName).ToList();
+                var existingRecords = personRepository.GetByName(personfullnames.FirstName, personfullnames.Surname, personfullnames.Gender).ToList();
                 if (existingRecords.Count > 0)
                 {
                 }
                 else
                 {
                     personRepository.Add(personfullnames);
+                    personRepository.SaveAll();
                 }
             }
             
-            personRepository.SaveAll();
+           
             
             sortedLines.ForEach(line => logger.LogInformation(line));
             Console.WriteLine("Sorted names are written to file. Press any key to exit");

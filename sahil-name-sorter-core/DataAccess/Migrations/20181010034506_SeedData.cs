@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace sahilnamesorterweb.Migrations
+namespace SahilNameSorterCore.DataAccess.Migrations
 {
     public partial class SeedData : Migration
     {

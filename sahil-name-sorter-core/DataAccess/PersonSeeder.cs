@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Newtonsoft.Json;
-using sahilNameSorterWeb.Data.Entities;
+using SahilNameSorterCore.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using SahilNameSorterCore.Entities;
 using System.Threading.Tasks;
 
-namespace sahilNameSorterWeb.Data
+namespace SahilNameSorterCore.DataAccess
 {
     public class PersonSeeder
     {

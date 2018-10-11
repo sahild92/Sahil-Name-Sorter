@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace sahilNameSorterWeb.Data
+namespace SahilNameSorterCore.DataAccess
 {
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<NameSorterContext>
     {

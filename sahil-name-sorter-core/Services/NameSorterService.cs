@@ -10,6 +10,8 @@ using sahil_name_sorter_core.Domain;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using SahilNameSorterCore.Entities;
+using System.Linq;
 
 namespace SahilNameSorterCore.Services
 {
@@ -20,11 +22,14 @@ namespace SahilNameSorterCore.Services
         private readonly DbContext dbContext;
         private readonly IGenderizeClient client;
 
-        public NameSorterService(IGenderizeClient client, IMemoryCache memoryCache, ILogger<NameSorterService> logger, DbContext dbContext)
+        private readonly IPersonRepository personRepository;
+
+        public NameSorterService(IGenderizeClient client, IMemoryCache memoryCache, ILogger<NameSorterService> logger, IPersonRepository personRepository)
         {
             _cache = memoryCache;
             this.logger = logger;
-            this.dbContext = dbContext;
+           this.personRepository = personRepository;
+         
             this.client = client;
         }
         
@@ -92,7 +97,26 @@ namespace SahilNameSorterCore.Services
             }
             var sortedLines = PersonService.GetFullNames(sortedNames);
             File.WriteAllLines(@"sorted-names-list.txt", sortedLines);
-        
+            foreach (var person in sortedNames)
+            {
+                var personfullnames = new PersonFullNames()
+                {
+                    FirstName = person.FirstName,
+                    LastName = person.Surname
+                };
+      
+                var existingRecords = personRepository.GetByName(personfullnames.FirstName, personfullnames.LastName).ToList();
+                if (existingRecords.Count > 0)
+                {
+                }
+                else
+                {
+                    personRepository.Add(personfullnames);
+                }
+            }
+            
+            personRepository.SaveAll();
+            
             sortedLines.ForEach(line => logger.LogInformation(line));
             Console.WriteLine("Sorted names are written to file. Press any key to exit");
 

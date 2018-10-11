@@ -2,17 +2,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using sahilNameSorterWeb.Data;
+using SahilNameSorterCore.DataAccess;
 
 namespace sahilnamesorterweb.Migrations
 {
     [DbContext(typeof(NameSorterContext))]
-    [Migration("20181010011010_InitialDB")]
-    partial class InitialDB
+    partial class NameSorterContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,6 +35,10 @@ namespace sahilnamesorterweb.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("PersonFullNames");
+
+                    b.HasData(
+                        new { ID = 1, FirstName = "Sahil", LastName = "Deshpande" }
+                    );
                 });
 #pragma warning restore 612, 618
         }

@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using SahilNameSorterCore.DataAccess;
 using SahilNameSorterCore.Domain;
 using SahilNameSorterCore.Services;
-using sahilNameSorterWeb.Data;
 
 namespace sahilNameSorterWeb
 {
@@ -47,7 +47,10 @@ namespace sahilNameSorterWeb
             services.AddHttpClient();
             // services.AddHttpClient<IGenderizeClient, GenderizeClient>();
             services.AddTransient<IGenderizeClient, GenderizeClient>();
-            services.AddMvc();
+
+            services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddMvc()
+                    .AddControllersAsServices();
             services.AddMemoryCache();
         }
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace sahilnamesorterweb.Migrations
+namespace SahilNameSorterCore.DataAccess.Migrations
 {
     public partial class InitialDB : Migration
     {

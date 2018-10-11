@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using sahilNameSorterWeb.Data.Entities;
+using SahilNameSorterCore.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace sahilNameSorterWeb.Data
+namespace SahilNameSorterCore.DataAccess
 {
     public class NameSorterContext : DbContext
     {

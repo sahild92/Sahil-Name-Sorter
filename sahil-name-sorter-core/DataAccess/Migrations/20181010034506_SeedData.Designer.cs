@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using sahilNameSorterWeb.Data;
+using SahilNameSorterCore.DataAccess;
 
-namespace sahilnamesorterweb.Migrations
+namespace SahilNameSorterCore.DataAccess.Migrations
 {
     [DbContext(typeof(NameSorterContext))]
     [Migration("20181010034506_SeedData")]

@@ -17,11 +17,14 @@ namespace sahilNameSorterWeb.Controllers
     {
         private readonly INameSorterService nameSorterService;
         private readonly IGenderizeClient client;
+        private readonly IPersonRepository _repository;
 
-        public HomeController(INameSorterService nameSorterService, IGenderizeClient client)
+        public HomeController(INameSorterService nameSorterService, IGenderizeClient client, IPersonRepository repository)
         {
             this.nameSorterService = nameSorterService;
             this.client = client;
+            this._repository = repository;
+           
         }
 
         public IActionResult Index()
@@ -29,6 +32,11 @@ namespace sahilNameSorterWeb.Controllers
             var model = new HomeViewModel { WelcomeMessage = "Welcome to Sort Application" };
 
             return View(model);
+        }
+        public IActionResult Names()
+        {
+            var results = _repository.GetAll();
+            return View(results);
         }
 
         [HttpPost]
@@ -60,6 +68,8 @@ namespace sahilNameSorterWeb.Controllers
 
             };
             return View(model1);
+
+           
 
         }
         

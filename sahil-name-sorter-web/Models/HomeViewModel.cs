@@ -20,6 +20,7 @@ namespace sahilNameSorterWeb.Models
 
         [Required(ErrorMessage = "input string is required")]
         [StringLength(10)]
+
         public string inputString { get; set; }
         public HomeViewModel()
         {

@@ -11,6 +11,8 @@ namespace SahilNameSorterCore.Entities
         public string Surname { get; set; }
         public string FirstName { get; set; }
         public string Gender { get; set; }
+        public string Namevalidation { get; set; }
+   
 
         public Person()
         {

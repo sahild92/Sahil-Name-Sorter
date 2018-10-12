@@ -104,7 +104,8 @@ namespace SahilNameSorterCore.Services
                     FirstName = person.FirstName,
                     Surname = person.Surname,
                     Gender = person.Gender,
-                    FullName = person.FirstName + " " + person.Surname
+                    FullName = person.FirstName + " " + person.Surname,
+                    
                 };
                 
                 var existingRecords = personRepository.GetByName(personfullnames.FirstName, personfullnames.Surname, personfullnames.Gender, personfullnames.FullName).ToList();

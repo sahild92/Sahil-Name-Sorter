@@ -28,7 +28,7 @@ namespace SahilNameSorterCore.DataAccess
             if (!_ctx.Person.Any())
             {
                 //Create sample data
-                var filepath = Path.Combine(_hosting.ContentRootPath,"Data/Names.json");
+                var filepath = Path.Combine(_hosting.ContentRootPath,"SeedData/Names.json");
                 var json = File.ReadAllText(filepath);
                 var people = JsonConvert.DeserializeObject<IEnumerable<Person>>(json);
                 _ctx.Person.AddRange(people);

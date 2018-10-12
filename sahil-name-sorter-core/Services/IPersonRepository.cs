@@ -8,7 +8,7 @@ namespace SahilNameSorterCore.Services
         Person Get(int id);
         IEnumerable<Person> GetAll();
 
-        IEnumerable<Person> GetByName(string firstname, string lastname, string gender);
+        IEnumerable<Person> GetByName(string firstname, string lastname, string gender, string fullName);
         void Add(Person personFullNames);
 
         bool SaveAll();

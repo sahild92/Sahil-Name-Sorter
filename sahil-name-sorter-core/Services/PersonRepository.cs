@@ -21,10 +21,9 @@ namespace SahilNameSorterCore.Services
             return _ctx.Person.Where(person => person.ID == id).FirstOrDefault();
         }
 
-        public IEnumerable<Person> GetByName(string firstname, string lastname, string gender)
+        public IEnumerable<Person> GetByName(string firstname, string lastname, string gender, string fullName)
         {
             var personFullNameEntities = _ctx.Person.Where(person => person.FirstName == firstname && person.Surname == lastname && person.Gender == gender);
-
             return personFullNameEntities;
         }
 

@@ -19,12 +19,19 @@ namespace SahilNameSorterCore.DataAccess
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Person>()
+                .HasKey(p => new { p.ID, p.FullName });
+               
+            modelBuilder.Entity<Person>()
                 .HasData(new Person()
                 {
                     ID = 1,
+                    FullName = "Sahil Deshpande",
                     FirstName = "Sahil",
                     Surname = "Deshpande"
                 });
+
+            modelBuilder.Entity<Person>().Property(f => f.FullName).ValueGeneratedNever();
+
         }
     }
 }

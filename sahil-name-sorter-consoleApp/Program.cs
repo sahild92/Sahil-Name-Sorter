@@ -141,19 +141,7 @@ namespace SahilNameSorter
             
         }
 
-      /*  public static void GenderType(List<string> sortedNames)
-        {
-            List<string> genderType = new List<string>();
-            foreach (string n in sortedNames)
-            {
-                string apiData = GetAPIData(n);
-                List<String> thisName = ParseData(apiData);
-                double prob = Convert.ToDouble(thisName[1]) * 100;
-                string thisData = null;
-                if (!String.IsNullOrEmpty(thisName[0])) thisData = "The name '" + n + "' has a " + prob + "% chance of being a " + thisName[0] + ".";
-                else continue;
-                genderType.Add(thisData);
-            }*/
+
 
         }
 

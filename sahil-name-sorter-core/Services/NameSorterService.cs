@@ -103,22 +103,21 @@ namespace SahilNameSorterCore.Services
                 {
                     FirstName = person.FirstName,
                     Surname = person.Surname,
-                    Gender = person.Gender
+                    Gender = person.Gender,
+                    FullName = person.FirstName + " " + person.Surname
                 };
-      
-                var existingRecords = personRepository.GetByName(personfullnames.FirstName, personfullnames.Surname, personfullnames.Gender).ToList();
+                
+                var existingRecords = personRepository.GetByName(personfullnames.FirstName, personfullnames.Surname, personfullnames.Gender, personfullnames.FullName).ToList();
                 if (existingRecords.Count > 0)
                 {
                 }
                 else
                 {
+                   
                     personRepository.Add(personfullnames);
                     personRepository.SaveAll();
                 }
             }
-            
-           
-            
             sortedLines.ForEach(line => logger.LogInformation(line));
             Console.WriteLine("Sorted names are written to file. Press any key to exit");
 

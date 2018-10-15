@@ -1,0 +1,24 @@
+Sub Macro_Signature()
+'
+' Macro_Signature Macro
+'
+Dim user As String
+
+user = Environ("USERNAME")
+If Dir("L:\", vbDirectory) = "" Then
+  MsgBox "The user folder cannot be located in the L Drive please contact IT Support"
+Exit Sub
+End If
+If Dir("L:\AUTHORS\" & user, vbDirectory) = "" Then
+  MsgBox "The user folder cannot be located in the L Drive please contact IT Support"
+Exit Sub
+End If
+If Dir("L:\AUTHORS\" & user & "\Secure\signature.png", vbDirectory) = "" Then
+  MsgBox "The signature file cannot be located in your secure folder please contact IT Support"
+Exit Sub
+End If
+ Selection.InlineShapes.AddPicture FileName:= _
+   "L:\AUTHORS\" & user & "\Secure\signature.png", LinkToFile:=False, SaveWithDocument _
+        :=True
+
+End Sub
